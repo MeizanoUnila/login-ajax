@@ -2,8 +2,8 @@
 require("fungsi.php");
 
 // Jika input type tidak ada, diberi nilai NULL
-$username_string = isset($_GET['username']) ? $_GET['username'] : NULL;
-$password_string = isset($_GET['password']) ? $_GET['password'] : NULL;
+$username_string = isset($_POST['username']) ? mysql_real_escape_string($_POST['username']) : NULL;
+$password_string = isset($_POST['password']) ? mysql_real_escape_string($_POST['password']) : NULL;
 
 $sqlakun = "SELECT id FROM users WHERE username='" . $username_string ."' and password='".$password_string."'";
 $akun = fetchsql($sqlakun);
