@@ -34,10 +34,10 @@ $(document).ready(function(){
                         $('div#hasilLogin').addClass("alert alert-warning");
                     } // if
                     else { // login berhasil
-                        $('form#loginForm').hide(); // menyembunyikan tampilan login, key berhasil dan userid dikembalikan
+                        $('div#loginPanel').hide(); // menyembunyikan login panel
                         $('div#hasilLogin').removeClass();
                         $('div#hasilLogin').text("data.berhasil: " + data.berhasil
-                                                 + ", data.userid: " + data.userid);
+                                                 + ", data.userid: " + data.userid); // key berhasil dan userid dikembalikan
                         $('div#hasilLogin').addClass("alert alert-success");
                         // if ($rememberMe.is(":checked")) {
                             // Agar user tidak perlu login berikutnya, disini buat cookie
