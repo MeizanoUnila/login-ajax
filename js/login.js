@@ -2,6 +2,7 @@ $(document).ready(function(){
     $("form#loginForm").submit(function() { // tombol submit pada loginForm ditekan
         var username = $('[name="username"]').val(); // mendapatkan nilai username
         var password = $('[name="password"]').val(); // mendapatkan nilai password
+        // var rememberMe = $('[name="remember"]').val(); // mendapatkan nilai remember
 
         if (username && password) { // Hanya dijalankan jika nilai tidak kosong
             $.ajax({
@@ -18,8 +19,8 @@ $(document).ready(function(){
                 // Jika web service tidak merespon/gagal
                 error: function(XMLHttpRequest, textStatus, errorThrown) {
                     $('div#hasilLogin').text("responseText: " + XMLHttpRequest.responseText
-                                              + ", textStatus: " + textStatus
-                                              + ", errorThrown: " + errorThrown);
+                                             + ", textStatus: " + textStatus
+                                             + ", errorThrown: " + errorThrown);
                     $('div#hasilLogin').removeClass();
                     $('div#hasilLogin').addClass("alert alert-warning");
                 }, // error
@@ -36,9 +37,13 @@ $(document).ready(function(){
                         $('form#loginForm').hide(); // menyembunyikan tampilan login, key berhasil dan userid dikembalikan
                         $('div#hasilLogin').removeClass();
                         $('div#hasilLogin').text("data.berhasil: " + data.berhasil
-                                                  + ", data.userid: " + data.userid);
+                                                 + ", data.userid: " + data.userid);
                         $('div#hasilLogin').addClass("alert alert-success");
+                        // if ($rememberMe.is(":checked")) {
+                            // Agar user tidak perlu login berikutnya, disini buat cookie
+                        // }
                         setTimeout("location.href = 'dashboard.html';",1000); // mengarahkan ke dashboard setelah 1 detik
+                        // window.location.reload(); // Jika SPA, gunakan ini
                     } //else
                 } // success
             }); // ajax
