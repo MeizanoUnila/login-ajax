@@ -5,11 +5,11 @@ CASE tools yang digunakan:
 * jQuery 1.11
 * bootstrap 3.36
 * XAMPP 5.5 (PHP 5.5 dan MySQL 5)
+skrip PHP bisa diganti dengan API.
 
 ## Motivation
 
-Membuat template dasar untuk login.
-A short description of the motivation behind the creation and maintenance of the project. This should explain **why** the project exists.
+Membuat template dasar untuk login melalui Ajax.
 
 ## Installation
 
