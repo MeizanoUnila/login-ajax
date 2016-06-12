@@ -2,7 +2,7 @@
     $server = "localhost";
     $usernameDatabase = "root";
     $passwordDatabase = "";
-    $databaseName = "mydb";
+    $databaseName = "crudakun";
 
     $con = mysqli_connect($server,$usernameDatabase,$passwordDatabase,$databaseName) or die("Koneksi gagal");
 

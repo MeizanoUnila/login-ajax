@@ -1,48 +1,54 @@
 $(document).ready(function(){
-    $("form#loginForm").submit(function() { // loginForm is submitted
-        var username = $('#username').attr('value'); // get username
-        var password = $('#password').attr('value'); // get password
+    $("form#loginForm").submit(function() { // tombol submit pada loginForm ditekan
+        var username = $('[name="username"]').val(); // mendapatkan nilai username
+        var password = $('[name="password"]').val(); // mendapatkan nilai password
 
-        if (username && password) { // values are not empty
+        if (username && password) { // Hanya dijalankan jika nilai tidak kosong
             $.ajax({
                 type: "POST",
-                url: "dispatcher/ws-login.php", // URL of the PHP script
-//                contentType: "application/json; charset=utf-8",
+                url: "dispatcher/ws-login.php", // URL dari web service JSON, dalam hal ini dilayani skrip PHP
                 dataType: "json",
-                // send username and password as parameters to the PHP script
-                // jika pakai POST atau GET
-                data: {username: username, password: password},
+
+                // Mengirim login dengan nilai username dan passwd dengan nilai password sebagai parameter ke skrip PHP
+                // jika pakai POST
+                data: {login: username, passwd: password},
                 // jika pakai GET
-//                 data: "username=" + username + "&password=" + password,
-                // script call was *not* successful
+                // data: "username=" + username + "&password=" + password,
+
+                // Jika web service tidak merespon/gagal
                 error: function(XMLHttpRequest, textStatus, errorThrown) {
-                    $('div#loginResult').text("responseText: " + XMLHttpRequest.responseText
+                    $('div#hasilLogin').text("responseText: " + XMLHttpRequest.responseText
                                               + ", textStatus: " + textStatus
                                               + ", errorThrown: " + errorThrown);
-                    $('div#loginResult').addClass("error");
+                    $('div#hasilLogin').removeClass();
+                    $('div#hasilLogin').addClass("alert alert-warning");
                 }, // error
-                // script call was successful
-                // data contains the JSON values returned by the PHP script
+
+                // Jika web service merespon
+                // data yang mengandung nilai JSON akan dikembalikan oleh skrip PHP
                 success: function(data){
-                    if (data.error) { // script returned error
-                        $('div#loginResult').text("data.error: " + data.error);
-                        $('div#loginResult').addClass("error");
+                    if (data.gagal) { // key gagal dikembalikan
+                        $('div#hasilLogin').removeClass();
+                        $('div#hasilLogin').text("data.gagal: " + data.gagal);
+                        $('div#hasilLogin').addClass("alert alert-warning");
                     } // if
-                    else { // login was successful
-                        $('form#loginForm').hide();
-                        $('div#loginResult').text("data.success: " + data.success
+                    else { // login berhasil
+                        $('form#loginForm').hide(); // menyembunyikan tampilan login, key berhasil dan userid dikembalikan
+                        $('div#hasilLogin').removeClass();
+                        $('div#hasilLogin').text("data.berhasil: " + data.berhasil
                                                   + ", data.userid: " + data.userid);
-                        $('div#loginResult').addClass("success");
-                        // setTimeout("location.href = 'home.php';",1000); mengarahkan ke dashboard
+                        $('div#hasilLogin').addClass("alert alert-success");
+                        setTimeout("location.href = 'dashboard.html';",1000); // mengarahkan ke dashboard setelah 1 detik
                     } //else
                 } // success
             }); // ajax
         } // if
         else {
-            $('div#loginResult').text("enter username and password");
-            $('div#loginResult').addClass("error");
+            $('div#hasilLogin').removeClass();
+            $('div#hasilLogin').text("Masukkan username dan password"); //keterangan jika input ada yang kosong
+            $('div#hasilLogin').addClass("alert alert-warning");
         } // else
-        $('div#loginResult').fadeIn();
+        $('div#hasilLogin').fadeIn();
         return false;
     });
 });

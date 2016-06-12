@@ -1,52 +1,65 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html lang="id">
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>Very simple login using Perl, jQuery, Ajax, JSON and MySQL</title>
-        <link rel="stylesheet" type="text/css" media="screen, projection"
-              href="css/blueprint/screen.css" />
-        <link rel="stylesheet"  type="text/css" media="screen, projection"
-              href="css/blueprint/plugins/buttons/screen.css" />
-        <link rel="stylesheet" type="text/css" media="print"
-              href="css/blueprint/print.css" />
-        <!--[if IE]><link rel="stylesheet" type="text/css" media="screen, projection"
-href="http://www.blueprintcss.org/blueprint/ie.css"><![endif]-->
-        <script type="text/javascript"
-                src="js/jquery-1.4.4.min.js"></script>
-        <script type="text/javascript" src="js/login.js"></script>
-        <style type="text/css">
-            #loginContent { width: 350px; margin: 100px auto; }
-            button[type] { margin: 0.5em 0; }
-        </style>
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="Login Sederhana menggunakan jQuery, Ajax, JSON, PHP, dan MySQL">
+        <meta name="author" content="Meizano">
+
+        <title>Login</title>
+        <link href="css/bootstrap.min.css" rel="stylesheet">
     </head>
     <body>
-        <div id="loginContent" class="container">
-            <div id="loginResult" style="display:none;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 col-md-offset-4">
+                    <h1 class="text-center">Login</h1>
+                    <div class="login-panel panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title text-center">Silakan login</h3>
+                        </div>
+                        <div class="panel-body">
+                            <form role="form" method="post" id="loginForm">
+                                <fieldset>
+                                    <div class="form-group">
+                                        <label for="username">Username</label>
+                                        <input class="form-control" placeholder="Username Anda" name="username" type="text" autofocus required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="username">Password</label>
+                                        <input class="form-control" placeholder="Password Anda" name="password" type="password" value="" required>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input name="remember" type="checkbox" value="Ingat Saya">Ingat Saya
+                                        </label>
+                                    </div>
+                                    <!-- Change this to a button or input when using this as a form -->
+                                    <button class="btn btn-lg btn-success btn-block" type="submit">Login</button>
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <form id="loginForm" name="loginForm" method="post" action="">
-                <fieldset>
-                    <legend>Enter information</legend>
-                    <p>
-                        <label for="username">Username</label>
-                        <br />
-                        <input type="text" id="username" name="username" class="text" size="20" />
-                    </p>
-                    <p>
-                        <label for="password">Password</label>
-                        <br />
-                        <input type="password" id="password" name="password" class="text" size="20" />
-                    </p>
-                    <p>
-                        <button type="submit" class="button positive">
-                            <img alt="ok" src=
-                                 "css/blueprint/plugins/buttons/icons/tick.png" />
-                            Login
-                        </button>
-                    </p>
-                </fieldset>
-            </form>
+            <div class="row">
+                <div class="col-md-4 col-md-offset-4">
+                    <div id="hasilLogin" style="display:none;">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-md-offset-4">
+                    <span>referensi: (1) <a href="http://www.ibm.com/developerworks/library/ws-simplelogin/index.html">IBM</a> (2) <a href="http://staff.unila.ac.id/meizano/">Meizano</a></span>
+                </div>
+            </div>
         </div>
-        <span>sumber: <a href="http://www.ibm.com/developerworks/library/ws-simplelogin/index.html">http://www.ibm.com/developerworks/library/ws-simplelogin/index.html</a></span>
+
+        <!--        <script src="js/jquery-3.0.0.min.js"></script> bootstrap CANT SUPPORT-->
+        <script src="js/jquery-1.11.3.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/login.js"></script>
     </body>
 </html>
