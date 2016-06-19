@@ -11,12 +11,12 @@ $akun = fetchsql($sqlakun);
 /* JSON */
 if($akun)
 {
-    $arr = array("berhasil" => "login berhasil","userid" => $akun[0]['id']);
+    $arr = array("berhasil" => "Mohon tunggu sebentar","userid" => $akun[0]['id']);
 
 }
 else
 {
-    $arr = array("gagal" => "username atau password salah");
+    $arr = array("gagal" => "Mohon ulang");
 }
 
 echo json_encode($arr);

@@ -29,12 +29,14 @@ $(document).ready(function(){
                 // data yang mengandung nilai JSON akan dikembalikan oleh skrip PHP
                 success: function(data){
                     if (data.gagal) { // key gagal dikembalikan
+                        $('div#hasilLogin').removeAttr( "style" );
                         $('div#hasilLogin').removeClass();
                         $('div#hasilLogin').text("data.gagal: " + data.gagal);
                         $('div#hasilLogin').addClass("alert alert-warning");
                     } // if
                     else { // login berhasil
                         $('div#loginPanel').hide(); // menyembunyikan login panel
+                        $('div#hasilLogin').removeAttr( "style" );
                         $('div#hasilLogin').removeClass();
                         $('div#hasilLogin').text("data.berhasil: " + data.berhasil
                                                  + ", data.userid: " + data.userid); // key berhasil dan userid dikembalikan
