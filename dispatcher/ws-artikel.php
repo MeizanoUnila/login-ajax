@@ -18,6 +18,7 @@ else
     $arr = array("gagal" => "Mohon ulang");
 }
 
-echo json_encode($arr);
+//echo  xmlrpc_encode($arr);
+echo  json_encode($arr);
 /* JSON */
 ?>

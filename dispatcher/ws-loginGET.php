@@ -2,8 +2,8 @@
 require("fungsi.php");
 
 // Jika input type tidak ada, diberi nilai NULL
-$username_string = isset($_POST['login']) ? mysql_real_escape_string($_POST['login']) : NULL;
-$password_string = isset($_POST['passwd']) ? mysql_real_escape_string($_POST['passwd']) : NULL;
+$username_string = isset($_GET['login']) ? mysqli_real_escape_string($_GET['login']) : NULL;
+$password_string = isset($_GET['passwd']) ? mysqli_real_escape_string($_GET['passwd']) : NULL;
 
 $sqlakun = "SELECT id FROM akun WHERE login='" . $username_string ."' and password=MD5('".$password_string."')";
 $akun = fetchsql($sqlakun);
@@ -19,7 +19,6 @@ else
     $arr = array("gagal" => "Mohon ulang");
 }
 
-//echo  xmlrpc_encode($arr);
 echo json_encode($arr);
 /* JSON */
 ?>
