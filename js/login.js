@@ -1,3 +1,22 @@
+function redirect(url) {
+    var ua = navigator.userAgent.toLowerCase(),
+        isIE = ua.indexOf('msie') !== -1,
+        version = parseInt(ua.substr(4, 2), 10);
+
+    // Internet Explorer 8 and lower
+    if (isIE && version < 9) {
+        var link = document.createElement('a');
+        link.href = url;
+        document.body.appendChild(link);
+        link.click();
+    }
+
+    // All other browsers can use the standard window.location.href (they don't lose HTTP_REFERER like IE8 & lower does)
+    else {
+        window.location.href = url;
+    }
+}
+
 $(document).ready(function () {
     $("form#loginForm").submit(function () { // tombol submit pada loginForm ditekan
         var username = $('[name="username"]').val(); // mendapatkan nilai username
@@ -7,17 +26,17 @@ $(document).ready(function () {
         if (username && password) { // Hanya dijalankan jika nilai tidak kosong
             $.ajax({
                 type: "GET",
-                url: "dispatcher/ws-loginGET.php", // URL dari web service JSON, dalam hal ini dilayani skrip PHP
+                url: "dispatcher/ws-login-GET.php", // URL dari web service JSON, dalam hal ini dilayani skrip PHP
                 dataType: "json",
 
                 // Mengirim login dengan nilai username dan passwd dengan nilai password sebagai parameter ke skrip PHP
-                // jika pakai POST
-//                data: {
-//                    login: username,
-//                    passwd: password
-//                },
-                // jika pakai GET
-                 data: "login=" + username + "&passwd=" + password,
+                // jika pakai POST, ganti dengan url: "dispatcher/ws-login-POST.php"
+                // data: {
+                //     login: username,
+                //     passwd: password
+                // },
+                // jika pakai GET, ganti dengan url: "dispatcher/ws-login-GET.php"
+                data: "login=" + username + "&passwd=" + password,
 
                 // Jika web service tidak merespon/gagal
                 error: function (XMLHttpRequest, textStatus, errorThrown) {
@@ -36,8 +55,7 @@ $(document).ready(function () {
                             $('div#hasilLogin').removeClass();
                             $('div#hasilLogin').text("data.gagal: " + data.gagal);
                             $('div#hasilLogin').addClass("alert alert-warning");
-                        } //if
-                        else { // login berhasil
+                        } else { // login berhasil
                             $('div#loginPanel').hide(); // menyembunyikan login panel
                             $('div#hasilLogin').removeAttr("style");
                             $('div#hasilLogin').removeClass();
@@ -64,22 +82,3 @@ $(document).ready(function () {
         return false;
     });
 });
-
-function redirect (url) {
-    var ua        = navigator.userAgent.toLowerCase(),
-        isIE      = ua.indexOf('msie') !== -1,
-        version   = parseInt(ua.substr(4, 2), 10);
-
-    // Internet Explorer 8 and lower
-    if (isIE && version < 9) {
-        var link = document.createElement('a');
-        link.href = url;
-        document.body.appendChild(link);
-        link.click();
-    }
-
-    // All other browsers can use the standard window.location.href (they don't lose HTTP_REFERER like IE8 & lower does)
-    else {
-        window.location.href = url;
-    }
-}

@@ -18,7 +18,7 @@ function fetchsql($sql)
 function runsql($sql)
 {
     //Menjalankan perintah SQL dengan nilai kembalian BOOLEAN (INSERT, UPDATE, DELETE)
-    require("connect.php");
+    require("koneksidb.php");
     $query = mysqli_query($con,$sql);
     mysqli_close($con);
     return $query;
