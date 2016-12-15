@@ -17,6 +17,10 @@ Membuat template dasar untuk login melalui Ajax.
 2. Buat database crudakun
 3. Import crudakun.sql ke database 
 
+## Preview
+
+Situs dapat diakses melalui: https://meizano.github.io/login-ajax/ (hanya tampilan saja, tidak ada data)
+
 ## License
 
 GNU GPLv3
