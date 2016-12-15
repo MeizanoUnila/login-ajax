@@ -19,4 +19,4 @@ Membuat template dasar untuk login melalui Ajax.
 
 ## License
 
-GPL
+GNU GPLv3
